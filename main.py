@@ -21,15 +21,7 @@ class Notepad:
     __file = None
 
     def __init__(self,**kwargs):
-        #initialization
-
-        #set icon
-        try:
-            self.__root.wm_iconbitmap("Notepad.ico") #GOT TO FIX THIS ERROR (ICON)
-        except:
-            pass
-
-        #set window size (the default is 300x300)
+        #set window size
 
         try:
             self.__thisWidth = kwargs['width']
@@ -45,7 +37,7 @@ class Notepad:
         self.__root.title("Untitled - Notepad")
 
         #center the window
-        screenWidth = self.__root.winfo_screenwidth()
+        screenWidth =self.__root.winfo_screenwidth()
         screenHeight = self.__root.winfo_screenheight()
 
         left = (screenWidth / 2) - (self.__thisWidth / 2)
@@ -53,11 +45,11 @@ class Notepad:
 
         self.__root.geometry('%dx%d+%d+%d' % (self.__thisWidth, self.__thisHeight, left, top))
 
-        #to make the textarea auto resizable
+        #make the textarea auto resizable
         self.__root.grid_rowconfigure(0,weight=1)
         self.__root.grid_columnconfigure(0,weight=1)
 
-        #add controls (widget)
+        #add controls
 
         self.__thisTextArea.grid(sticky=N+E+S+W)
 
@@ -72,8 +64,6 @@ class Notepad:
         self.__thisEditMenu.add_command(label="Copy",command=self.__copy)
         self.__thisEditMenu.add_command(label="Paste",command=self.__paste)
         self.__thisMenuBar.add_cascade(label="Edit",menu=self.__thisEditMenu)
-
-        self.__thisHelpMenu.add_command(label="About Notepad",command=self.__showAbout)
         self.__thisMenuBar.add_cascade(label="Help",menu=self.__thisHelpMenu)
 
         self.__root.config(menu=self.__thisMenuBar)
@@ -87,9 +77,6 @@ class Notepad:
         self.__root.destroy()
         #exit()
 
-    def __showAbout(self):
-        showinfo("Notepad","Created by: Ferdinand Silva (http://ferdinandsilva.com)")
-
     def __openFile(self):
         
         self.__file = askopenfilename(defaultextension=".txt",filetypes=[("All Files","*.*"),("Text Documents","*.txt")])
@@ -98,8 +85,7 @@ class Notepad:
             #no file to open
             self.__file = None
         else:
-            #try to open the file
-            #set the window title
+            #try to open the file and setwindow title
             self.__root.title(os.path.basename(self.__file) + " - Notepad")
             self.__thisTextArea.delete(1.0,END)
 
@@ -147,13 +133,12 @@ class Notepad:
         self.__thisTextArea.event_generate("<<Paste>>")
 
     def run(self):
-
-        #run main application
+        #run main app
         self.__root.mainloop()
 
 
 
 
-#run main application
+#run da notepad B)
 notepad = Notepad(width=600,height=400)
 notepad.run()
