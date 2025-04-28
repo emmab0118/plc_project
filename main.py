@@ -15,7 +15,6 @@ class Notepad:
     __thisMenuBar = Menu(__root)
     __thisFileMenu = Menu(__thisMenuBar, tearoff=0)
     __thisEditMenu = Menu(__thisMenuBar, tearoff=0)
-    __thisHelpMenu = Menu(__thisMenuBar, tearoff=0)
     __thisScrollBar = Scrollbar(__thisTextArea)
     __file = None
 
