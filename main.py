@@ -5,8 +5,6 @@ from tkinter.messagebox import *
 from tkinter.filedialog import *
 
 class Notepad:
-
-    #variables
     __root = Tk()
 
     #default window width and height
